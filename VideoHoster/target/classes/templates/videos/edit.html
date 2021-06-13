@@ -1,0 +1,63 @@
+<html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<header th:replace="layout :: logged-in"></header>
+
+<body style="background: black">
+<div style="padding-top: 70px ;border: 3px solid green;">
+    <div class="container">
+        <center><h1><mark>Edit Video</mark></h1></center>
+    </div>
+</div>
+<div class="container" style="width: 80%; border: 5px solid whitesmoke   ; background: darkseagreen">
+<form class="form-horizontal" th:method="put" th:action="@{/editVideo(videoId=${video.id})}" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="title">Video Title:</label>
+        <div class="col-sm-10">
+            <input type="text" style="background: greenyellow" class="form-control"  name="title" id="title" size="70" th:value="${video.title}" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="description">Description:</label>
+        <div class="col-sm-10">
+            <textarea rows="7" style="background: greenyellow" class="form-control" id="description" cols="100" name="description" th:text="${video.description}" required></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="file">Edit File</label>
+        <div class="col-sm-10">
+            <video width="320" height="240" controls>
+                <source th:src="'data:video/mp4;base64,'+${video.videoFile}" type="video/mp4">
+            </video>
+            <input style="background: greenyellow" class="form-control" type="file" name="file" id="file"/>
+        </div>
+    </div>
+
+    <!-- The code provides an option to edit the tags of an video and also displays the previous assigned tags to an video-->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="tags">Edit Tags</label>
+        <div class="col-sm-10">
+            <textarea style="background: greenyellow" class="form-control" type="text" name="tags" id="tags" th:text="${tags}" required></textarea>
+            <p>Multiple tags are allowed. Please separate tags by "," such as labrador,dog,yellow </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input class="btn btn-danger" type="submit" value="Submit"/>
+        </div>
+    </div>
+</form>
+</div>
+</body>
+</html>

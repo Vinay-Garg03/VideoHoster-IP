@@ -1,0 +1,23 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+
+<!-- Adding the fragment site-head in layout.html-->
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<!-- Adding the fragment logged-out in layout.html-->
+
+
+<body style="background: #333333">
+<header th:replace="layout :: logged-out"></header>
+<div style="padding: 70px 0;border: 3px solid green;">
+<center><h1 style="color: whitesmoke"><u><b>Video Hoster</b></u></h1></center>
+</div>
+</body>
+</html>

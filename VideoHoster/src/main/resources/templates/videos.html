@@ -1,0 +1,41 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<!-- Using the logged-in fragment -->
+<header th:replace="layout :: logged-in"></header>
+<!-- Display all the videos in user home page after successful log in-->
+<body style="background: black">
+<div style="padding: 50px ;border: 3px solid green;">
+    <div class="container">
+        <center><h1><mark>Welcome User. These are the videos</mark></h1></center>
+    </div>
+</div>
+<main id="videos">
+    <post th:each="i : ${videos}">
+
+        <div class="row" style="background: #333333;margin: 2px">
+            <div class="col-sm-4">
+                <video width="320" height="240" controls>
+                    <source th:src="'data:video/mp4;base64,'+${i.videoFile}" type="video/mp4">
+                </video>
+            </div>
+            <div class="col-sm-4" style="color: greenyellow;">
+            <a th:href="'/videos/' + ${i.title}">
+                        <h3 class="page-header" th:text="${i.title}">Title of video</h3>
+                </a>
+                <i>Posted On: </i> <span th:text="${i.date}"></span>
+            </div>
+        </div>
+    </post>
+</main>
+</body>
+</html>

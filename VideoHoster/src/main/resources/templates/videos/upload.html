@@ -1,0 +1,63 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<!-- Using the logged-in fragment -->
+<header th:replace="layout :: logged-in"></header>
+
+<body style="background: black">
+<div style="padding: 50px ;border: 3px solid green;">
+    <div class="container">
+        <center><h1><mark>Upload New Video</mark></h1></center>
+    </div>
+</div>
+<div class="container" style="width: 80%; height: 50%; border: 5px solid whitesmoke   ; background: darkseagreen">
+<form class="form-horizontal" method="post" th:action="@{/videos/upload}" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="title">Video Title:</label>
+        <div class="col-sm-10">
+            <input class="form-control" style="background: greenyellow" type="text" id="title" name="title" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="description">Description:</label>
+        <div class="col-sm-10">
+            <textarea style="background: greenyellow" class="form-control" rows="7" cols="100" id="description" name="description" required></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="file">Upload File</label>
+        <div class="col-sm-10">
+            <input class="form-control" style="background: greenyellow" type="file" name="file" id="file" required/>
+        </div>
+    </div>
+
+    <!-- This piece of code accepts the string of all the tags separated by a comma-->
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="tags">Tags</label>
+        <div class="col-sm-10">
+            <input class="form-control" style="background: greenyellow" type="text" name="tags" id="tags" required/>
+            <p style="color: red"> Multiple tags are allowed. Please separate tags by "," such as labrador,dog,yellow </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input class="btn btn-success" type="submit" value="Submit"/>
+        </div>
+    </div>
+</form>
+</div>
+</body>
+</html>

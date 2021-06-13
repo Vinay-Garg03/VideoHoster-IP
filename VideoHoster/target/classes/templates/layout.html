@@ -1,0 +1,54 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head th:fragment="site-head">
+    <title>Video Hoster Application</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<!-- The logged-out fragment now contains Login as well as Registration-->
+<header th:fragment="logged-out" th:remove="tag">
+    <header class="col-md-12">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html" th:href="@{/}">VideoHoster</a>
+                </div>
+                <a href="users/login.html" style="color: floralwhite" th:href="@{/users/login}"><button type="button" class="btn btn-primary">Login</button></a>
+                <a href="users/registration.html" style="color: floralwhite" th:href="@{/users/registration}"><button type="button" class="btn btn-success">Registration</button></a>
+            </div>
+        </nav>
+    </header>
+</header>
+
+<!-- Define a logged-in fragment-->
+<header th:fragment="logged-in" th:remove="tag">
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="videos.html" th:href="@{/videos}">VideoHoster</a>
+                </div>
+                <div class="nav navbar-nav" style="color: whitesmoke">
+                <b>Logged in as:</b>
+                <label th:text="${session.loggeduser.profile.firstName}+' '+${session.loggeduser.profile.lastName}"></label> |
+                <a href="videos/upload.html" th:href="@{/videos/upload}"><button class="btn btn-primary navbar-btn">Upload Video</button></a>
+
+                <form method="post" th:action="@{/users/logout}">
+                    <input style="color: #333333" type="submit" value="Logout"/>
+                </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+</header>
+
+</body>
+
+</html>

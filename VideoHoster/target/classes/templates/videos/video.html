@@ -1,0 +1,58 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org" lang="en">
+
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<!-- Using the logged-in fragment -->
+<header th:replace="layout :: logged-in"></header>
+<!-- Display all the details of a particular video-->
+<body style="background: black">
+<div style="padding: 50px ;border: 3px solid green;">
+    <div class="container">
+        <center><h1><mark>Welcome User. This is the video</mark></h1></center>
+    </div>
+</div>
+<center><main id="video">
+
+    <div>
+        <video width="320" height="240" controls>
+            <source th:src="'data:video/mp4;base64,'+${video.videoFile}" type="video/mp4">
+        </video>
+    </div>
+    <div style="color: whitesmoke;background: #333333;width: 50%">
+        <div style="color: green;background: darkseagreen;width: 80%"><u><h3 th:text="${video.title}">Title of video</h3></u></div>
+    <div style="background-color: orange;width: 75%"><div><i>Posted On: </i> <span th:text="${video.date}"></span></div>
+    <div><i>Description: </i> <span th:text="${video.description}"></span></div></div>
+
+    <!-- Code to display all  the tags of an video. ${tags} refers to a tags attribute in Model type object-->
+    <div style="background: green;width: 70%">Tags:-
+
+        <header th:each="tag : ${tags}">
+                <div style="color: red;background: yellowgreen;padding: 4px;width: 50%" th:text="${tag.name}">Tag name</div>
+        </header>
+    </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-1">
+                <a th:href="@{/editVideo(videoId=${video.id})}"><button class="btn btn-warning">Edit</button></a>
+            </div>
+            <div class="col-sm-1">
+                <form class="form-container" th:action="@{/deleteVideo(videoId=${video.id})}" th:method="delete">
+                    <input class="btn btn-danger" type="submit" value="Delete"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</center>
+</body>
+</html>
